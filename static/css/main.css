@@ -1,0 +1,33 @@
+@font-face {
+    src: ;
+    url: ;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    background: #FCFCFC;
+}
+
+
+.content {
+    width: 75%;
+    margin: 0 auto;
+}
+
+h1 {
+    font: 900 2em Proxima Nova, sans-serif;
+    color: #707070;
+}
+
+p {
+    font: 400 1em PT Sans Caption, sans-serif;
+    color: #707070;
+}
