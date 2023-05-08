@@ -18,16 +18,176 @@ body {
 
 
 .content {
-    width: 75%;
+    width: 60%;
+    margin: 8% auto 0 auto;
+}
+
+.content h1 {
+    font: 900 2em Proxima Nova, sans-serif;
+    color: #464545;
+    text-align: center;
+}
+
+.content p {
+    font: 400 1em PT Sans Caption, sans-serif;
+    color: #707070;
+    text-align: center;
+}
+
+
+.container {
+    background: #fff;
+    border: 1px solid rgba(169, 169, 169, 0.6);
+    border-radius: 25px;
+    width: 60%;
+    height: 530px;
+    filter: drop-shadow(2px 2px 1px rgba(184, 184, 184, 0.2));
+    margin: 25px auto 0 auto;
+    padding: 5%;
+}
+
+
+.container h3 {
+    font: 900 1.2em Proxima Nova, sans-serif;
+    color: #464545;
+    margin-bottom: 25px;
+}
+
+.container form {
     margin: 0 auto;
 }
 
-h1 {
-    font: 900 2em Proxima Nova, sans-serif;
-    color: #707070;
+.container form input::placeholder {
+    padding-left: 8px;
+    color: #464545;
 }
 
-p {
-    font: 400 1em PT Sans Caption, sans-serif;
-    color: #707070;
+.container form input {
+    width: 45%;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgb(219, 219, 219);
+    margin: 0 10px 35px 0;
+    outline: none;
+    color: #464545;
+    font: 400 0.9em Proxima Nova, sans-serif;
+    padding-left: 8px;
+
+}
+
+.container form input[type='text'] {}
+
+
+.container form input[type='date'] {
+    width: 94%;
+}
+
+.container form input[type='time'] {
+    width: 45%;
+}
+
+.container form input[type='submit'] {
+    background: #464545;
+    color: #F7F7F2;
+    height: 60px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+
+
+.container form select {
+    width: 94%;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid rgb(219, 219, 219);
+    color: #464545;
+    font: 400 0.9em Proxima Nova, sans-serif;
+    outline: none;
+    padding-left: 8px;
+}
+
+.toggle-container {
+    width: 90%;
+
+    margin: 50px 0 5px 0;
+}
+
+.toggle-container span:first-child {
+    color: #464545;
+    font: 600 0.9em Proxima Nova, sans-serif;
+    display: block;
+    margin-bottom: 10px;
+}
+
+
+.container form label {
+    color: #464545;
+    font: 400 0.9em Proxima Nova, sans-serif;
+}
+
+
+.toggle {
+    position: relative;
+    display: inline-block;
+    width: 75px;
+    height: 35px;
+    top: -35px;
+    left: 55%;
+}
+
+.toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-switch {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid #ccc;
+    background: rgb(214, 214, 214);
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+/* circle dial */
+.toggle-switch:before {
+    position: absolute;
+    content: "";
+    width: 26px;
+    height: 26px;
+    left: 4px;
+    bottom: 4px;
+    background: #fff;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+
+input:checked+.toggle-switch {
+    background-color: #a4a4a4;
+}
+
+input:focus+.toggle-switch {
+    box-shadow: 0 0 1px #a4a4a4;
+}
+
+input:checked+.toggle-switch:before {
+    -webkit-transform: translateX(36px);
+    -ms-transform: translateX(36px);
+    transform: translateX(36px);
+}
+
+
+.toggle-switch.round {
+    border-radius: 34px;
+}
+
+.toggle-switch.round:before {
+    border-radius: 50%;
 }

@@ -6,7 +6,7 @@ app = Flask(__name__)
 def index():
     return render_template('index.html', page_title='Event Search')
 
-@app.route('/<city>/<category>', method=['GET', 'POST'])
+@app.route('/<city>/<category>', methods=['GET', 'POST'])
 def locale():
     return render_template('search-results.html', page_title='Event Search Results')
 
