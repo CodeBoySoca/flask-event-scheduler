@@ -1,28 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
-    <h3>Add Event</h3>
-    <form method="post">
-        <input type="text" placeholder="Event" required>
-        <input type="text" placeholder="Venue" required>
-        <input type="date" placeholder="Event Date" required>
-        <input type="time" placeholder="Start Time" required>
-        <input type="time" placeholder="End Time" required>
-        <select name="frequency">
-           <option value="1">Weekly</option>
-           <option value="2">Bi-Weekly</option>
-           <option value="3">Monthly</option>
-           <option value="4">Quartely</option>
-           <option value="5">Annually</option>
+<div class="container event-location">
+   <h3>Events</h3>
+   <form method="post">
+     <label>Enter your city</label><br>
+        <input type="text" name="location" placeholder="Enter the city where you would like to attend an event" required>
+        <select name="category">
+            <option value="1">Tech</option>
+            <option value="2">Design</option>
+            <option value="3">Hobbies</option>
+            <option value="4">Language study</option>
+            <option value="5">Dancing</option>
+            <option value="6">Leisure</option>
         </select>
-        <div class="toggle-container">
-            <span>Would like this event to be open to the public?</span>
-            <label class="toggle">
-            <input type="checkbox">
-            <span class="toggle-switch round"></span>
-        </label>
-        </div>
-        <input type="submit" value="Add Event">
-    </form>
+  
+     <input type="submit" value="Search for events">
+   </form>
 </div>
 {% endblock %}

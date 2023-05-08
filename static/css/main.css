@@ -75,6 +75,21 @@ body {
 
 }
 
+
+.event-location {
+    height: 350px;
+}
+
+.event-location form input[type='text'] {
+    width: 93%;
+    margin: 25px 0;
+}
+
+.event-location form select {
+    margin-bottom: 35px;
+}
+
+
 .container form input[type='text'] {}
 
 
