@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/event/search')
 def index():
     return render_template('index.html', page_title='Event Search')
 
@@ -17,6 +17,18 @@ def add_event():
 @app.route('/events')
 def events():
     return render_template('events.html', page_title='Events')
+
+@app.route('/logout')
+def logout():
+    pass
+
+@app.route('/')
+def login():
+    return render_template('login.html')
+
+@app.route('/register')
+def register():
+    return render_template('register.html')
 
 
 if __name__ == '__main__':
