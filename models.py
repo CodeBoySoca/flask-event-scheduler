@@ -22,6 +22,7 @@ class Notifications(EmbeddedDocument):
 
 
 class Event(EmbeddedDocument):
+    event_id = IntField()
     event_name = StringField()
     venue = StringField()
     location = EmbeddedDocument(Location)
@@ -31,8 +32,25 @@ class Event(EmbeddedDocument):
     likes = IntField()
     notifications = ListField(EmbeddedDocumentField(Notifications))
     privacy = StringField()
+    subscribers = ListField()
     attendees = ListField()
     frequency = StringField()
+
+    def add_event(event):
+        Event(**event).save()
+        return 200, 'ok'
+    
+    def delete_event(event_id):
+        Event.objects(event_id=event_id).delete()
+        return 204, 'ok'
+    
+    def update_event(event_id):
+        Event.objects(event_id=event_id).update()
+        return 204, 'update'
+    
+    def get(event_id):
+        return Event.objects(event_id=event_id)
+    
 
 class User(Document):
     name = StringField()
