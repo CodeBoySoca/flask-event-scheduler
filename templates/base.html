@@ -4,7 +4,7 @@
         <title>Event Scheduler - {{ page_title }}</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
         <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-        <script src="{{ url_for('static', filename='js/main.js')}}"></script>
+
     </head>
     <body>
       <div class="content">  
@@ -13,5 +13,6 @@
         {% block content %}
         {% endblock %}
       </div>  
+      <script src="{{ url_for('static', filename='js/main.js')}}"></script>
     </body>
 </html>

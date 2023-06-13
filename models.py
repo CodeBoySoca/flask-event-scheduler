@@ -1,6 +1,11 @@
-from mongoengine import Document, StringField, DateField, DateTimeField, IntField, ListField, EmbeddedDocumentField, EmbeddedDocument, ReferenceField
-from datetime import datetime
+from mongoengine import Document, StringField, DateField, DateTimeField, IntField, ListField, EmbeddedDocumentField, EmbeddedDocument, connect
+import datetime
 from bson import ObjectId
+from dotenv import load_dotenv
+import os
+
+load_dotenv('.env')
+connect('event-scheduler')
 
 
 class Location(EmbeddedDocument):
@@ -18,15 +23,15 @@ class EventDate(EmbeddedDocument):
 
 class Notifications(EmbeddedDocument):
     message = StringField()
-    notification_date = DateField()
+    notification_date = DateTimeField(datetime.datetime.utcnow().strftime('%m-%d-%Y'))
 
 
 class Event(EmbeddedDocument):
     event_id = IntField()
     event_name = StringField()
     venue = StringField()
-    location = EmbeddedDocument(Location)
-    event_date = DateField(datetime.datetime.utc)
+    location = EmbeddedDocumentField(Location)
+    event_date = DateTimeField(datetime.datetime.utcnow().strftime('%m-%d-%Y'))
     event_time = ListField(EmbeddedDocumentField(EventDate))
     description = StringField()
     likes = IntField()
@@ -51,12 +56,16 @@ class Event(EmbeddedDocument):
     def get(event_id):
         return Event.objects(event_id=event_id)
     
+    def get_notifications(user_id):
+        user_notification = User.objects(user_id=ObjectId(user_id))
+        return user_notification
+
 
 class User(Document):
-    name = StringField()
-    email = StringField()
-    password = StringField()
-    account_creation_date = DateField()
+    name = StringField(required=True)
+    email = StringField(required=True)
+    password = StringField(required=True)
+    account_creation_date = DateField(datetime.datetime.utcnow().strftime('%m-%d-%Y'))
     image = StringField()
     event = ListField(EmbeddedDocumentField(Event)) 
 
@@ -74,4 +83,7 @@ class User(Document):
 
     def get(user_id):
         return User.objects(_id=ObjectId(user_id))
+    
+    def check_email(email):
+        return User.objects(email=email)
 
