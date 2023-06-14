@@ -1,15 +1,19 @@
-from flask import Flask, render_template, url_for, request, session
+from flask import Flask, render_template, url_for, request, session, redirect, url_for
 from flask_session import Session
 from models import *
 from passlib.hash import pbkdf2_sha256
 import json
 from dotenv import load_dotenv
-from pymongo import MongoClient
+from flask_socketio import SocketIO, emit
+
+
+
 
 app = Flask(__name__)
 app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_TYPE'] =  'filesystem'
 Session(app)
+socketio = SocketIO(app)
 
 @app.route('/event/search')
 def index():
@@ -32,10 +36,21 @@ def events():
 
 @app.route('/logout')
 def logout():
-    pass
+    session.clear()
+    return redirect(url_for('login'))
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        user = request.form.to_dict()
+        result = User.check_account(user)
+        password_result = pbkdf2_sha256.verify(user['password'], result[0]['password'])
+        if password_result is not None and password_result is not False:
+            session['user'] = { 
+                'name' : result[0]['name'], 
+                'email' : result[0]['email']
+            }
+            return render_template('index.html', user=session['user'])
     return render_template('login.html')
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -50,8 +65,16 @@ def register():
             User.create(form)
     return render_template('register.html')
 
+@socketio.on('notifications')
+def notifications():
+    notification_data = Notification.get(session['user']['email'])
+    if not notifications:
+        notification_data = {'message' : 'You have no notifications'}
+    emit('notification', notification_data)
+    return 200, 'ok'
+
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5111) 
+    socketio.run(app) 
 
 

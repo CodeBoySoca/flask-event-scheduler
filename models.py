@@ -21,9 +21,13 @@ class EventDate(EmbeddedDocument):
     end_time = DateTimeField()
 
 
-class Notifications(EmbeddedDocument):
+class Notification(EmbeddedDocument):
     message = StringField()
+    notification_type = StringField(default='')
     notification_date = DateTimeField(datetime.datetime.utcnow().strftime('%m-%d-%Y'))
+
+    def get(email):
+        return User.objects(email=email)
 
 
 class Event(EmbeddedDocument):
@@ -35,7 +39,7 @@ class Event(EmbeddedDocument):
     event_time = ListField(EmbeddedDocumentField(EventDate))
     description = StringField()
     likes = IntField()
-    notifications = ListField(EmbeddedDocumentField(Notifications))
+    notifications = ListField(EmbeddedDocumentField(Notification))
     privacy = StringField()
     subscribers = ListField()
     attendees = ListField()
@@ -86,4 +90,7 @@ class User(Document):
     
     def check_email(email):
         return User.objects(email=email)
+
+    def check_account(user):
+        return User.objects(email=user['email']) 
 
