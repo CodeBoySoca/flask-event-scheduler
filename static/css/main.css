@@ -17,9 +17,59 @@ body {
 }
 
 
+
+
+.menu {
+    width: 30%;
+    position: absolute;
+    top: 50px;
+    right: -50px;
+}
+
+.notification-count {
+    background: red;
+    border-radius: 100%;
+    font: 800 0.9em Proxima Nova, sans-serif;
+    color: #fff;
+    padding: .1% .5% .1% .8%;
+    display: inline;
+    margin-right: 8px;
+}
+
+.menu ul {
+    width: auto;
+    height: 35px;
+}
+
+.menu ul li:nth-child(1) {
+    padding-right: 15px;
+}
+
+.menu ul li:nth-child(3) {
+    padding-right: 5px;
+}
+
+.fa-solid {
+    display: inline;
+}
+
+.menu ul li {
+    list-style-type: none;
+    display: inline;
+    padding-right: 15px;
+}
+
+.menu ul li a {
+    color: #464545;
+    font: 900 1.1em Proxima Nova, sans-serif;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+
 .content {
     width: 60%;
-    margin: 8% auto 0 auto;
+    margin: 12% auto 0 auto;
 }
 
 .content h1 {

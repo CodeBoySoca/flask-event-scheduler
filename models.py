@@ -17,13 +17,14 @@ class Location(EmbeddedDocument):
     postal_code = StringField()
 
 class EventDate(EmbeddedDocument):
+    #datetime.datetime.utcnow().strftime('%H:%M:%S')
     start_time = DateTimeField()
     end_time = DateTimeField()
 
 
 class Notification(EmbeddedDocument):
     message = StringField()
-    notification_type = StringField(default='')
+    notification_type = StringField()
     notification_date = DateTimeField(datetime.datetime.utcnow().strftime('%m-%d-%Y'))
 
     def get(email):
@@ -31,15 +32,16 @@ class Notification(EmbeddedDocument):
 
 
 class Event(EmbeddedDocument):
+    creator = StringField()
     event_id = IntField()
     event_name = StringField()
     venue = StringField()
     location = EmbeddedDocumentField(Location)
     event_date = DateTimeField(datetime.datetime.utcnow().strftime('%m-%d-%Y'))
-    event_time = ListField(EmbeddedDocumentField(EventDate))
+    event_time = EmbeddedDocumentField(EventDate)
     description = StringField()
     likes = IntField()
-    notifications = ListField(EmbeddedDocumentField(Notification))
+    notifications = EmbeddedDocumentField(Notification)
     privacy = StringField()
     subscribers = ListField()
     attendees = ListField()
@@ -71,7 +73,7 @@ class User(Document):
     password = StringField(required=True)
     account_creation_date = DateField(datetime.datetime.utcnow().strftime('%m-%d-%Y'))
     image = StringField()
-    event = ListField(EmbeddedDocumentField(Event)) 
+    events = ListField(EmbeddedDocumentField(Event)) 
 
     def create(user):
         User(**user).save()

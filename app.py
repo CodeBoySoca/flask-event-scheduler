@@ -2,22 +2,23 @@ from flask import Flask, render_template, url_for, request, session, redirect, u
 from flask_session import Session
 from models import *
 from passlib.hash import pbkdf2_sha256
-import json
 from dotenv import load_dotenv
-from flask_socketio import SocketIO, emit
-
+from flask_htmx import HTMX
+import json
 
 
 
 app = Flask(__name__)
+htmx = HTMX(app)
 app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_TYPE'] =  'filesystem'
 Session(app)
-socketio = SocketIO(app)
+
 
 @app.route('/event/search')
 def index():
-    return render_template('index.html', page_title='Event Search')
+    user=session['user']
+    return render_template('index.html', page_title='Event Search', notification_count = user['notification_count'])
 
 @app.route('/<city>/<category>', methods=['GET', 'POST'])
 def locale():
@@ -46,11 +47,14 @@ def login():
         result = User.check_account(user)
         password_result = pbkdf2_sha256.verify(user['password'], result[0]['password'])
         if password_result is not None and password_result is not False:
+            events = Notification.get(user['email'])[0]['events']
+            notification_count = len([notification for notification in events])
             session['user'] = { 
                 'name' : result[0]['name'], 
-                'email' : result[0]['email']
+                'email' : result[0]['email'],
+                'notification_count' : notification_count
             }
-            return render_template('index.html', user=session['user'])
+            return redirect(url_for('index'))
     return render_template('login.html')
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -65,16 +69,23 @@ def register():
             User.create(form)
     return render_template('register.html')
 
-@socketio.on('notifications')
+@app.route('/notifications', methods=['GET'])
 def notifications():
     notification_data = Notification.get(session['user']['email'])
-    if not notifications:
-        notification_data = {'message' : 'You have no notifications'}
-    emit('notification', notification_data)
-    return 200, 'ok'
+    if htmx:
+        if not notifications:
+            notification_data = {'message' : 'You have no notifications'}
+        return render_template('notifications.html', notification_data=notification_data)
+    
+
+@app.route('/notification_count', methods=['GET'])
+def notification_count():
+    events = Notification.get(session['user']['email'])[0]['events']
+    notification_count = len([notification for notification in events])
+    return notification_count
 
 
 if __name__ == '__main__':
-    socketio.run(app) 
+    app.run() 
 
 
