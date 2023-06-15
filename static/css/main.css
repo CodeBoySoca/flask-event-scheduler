@@ -29,9 +29,9 @@ body {
 .notification-count {
     background: red;
     border-radius: 100%;
-    font: 800 0.9em Proxima Nova, sans-serif;
+    font: 700 0.9em Proxima Nova, sans-serif;
     color: #fff;
-    padding: .1% .5% .1% .8%;
+    padding: .1% .5% .1% 1%;
     display: inline;
     margin-right: 8px;
 }
@@ -124,6 +124,47 @@ form input::placeholder {
     padding-left: 8px;
 }
 
+.notification-container {
+    width: 80%;
+    height: auto;
+    margin: 25px auto 0 auto;
+    padding: 5%;
+}
+
+.notification-container h3 {
+    font: 900 1.2em Proxima Nova, sans-serif;
+    color: #464545;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+
+.notifications {
+    background: #ecebeb;
+    border: 1px solid rgba(169, 169, 169, 0.6);
+    border-radius: 25px;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(2px 2px 1px rgba(184, 184, 184, 0.2));
+    margin: 25px auto 0 auto;
+    padding: 5% 5% 10% 5%;
+}
+
+
+.notifications p:first-of-type {
+    color: #747474;
+    font: 600 0.9em Proxima Nova, sans-serif;
+    line-height: 2em;
+    text-align: left;
+}
+
+.notifications p:last-of-type {
+    color: #252525;
+    font: 800 1em Proxima Nova, sans-serif;
+    text-align: left;
+    margin-top: 5px;
+}
+
 
 .event-location {
     height: 350px;
@@ -172,8 +213,7 @@ form input::placeholder {
 }
 
 .toggle-container {
-    width: 90%;
-
+    width: 100%;
     margin: 50px 0 5px 0;
 }
 
@@ -197,7 +237,7 @@ form input::placeholder {
     width: 75px;
     height: 35px;
     top: -35px;
-    left: 55%;
+    left: 60%;
 }
 
 .toggle input {

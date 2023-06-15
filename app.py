@@ -29,11 +29,11 @@ def add_event():
     if request.method == 'POST':
         form = request.form.to_dict()
         Event.add_event(**form)
-    return render_template('event.html', page_title='Add Event')
+    return render_template('event.html', page_title='Add Event', notification_count = session['user']['notification_count'])
 
 @app.route('/events')
 def events():
-    return render_template('events.html', page_title='Events')
+    return render_template('events.html', page_title='Events', notification_count = session['user']['notification_count'])
 
 @app.route('/logout')
 def logout():
@@ -71,20 +71,15 @@ def register():
 
 @app.route('/notifications', methods=['GET'])
 def notifications():
-    notification_data = Notification.get(session['user']['email'])
-    if htmx:
-        if not notifications:
-            notification_data = {'message' : 'You have no notifications'}
-        return render_template('notifications.html', notification_data=notification_data)
-    
-
-@app.route('/notification_count', methods=['GET'])
-def notification_count():
     events = Notification.get(session['user']['email'])[0]['events']
-    notification_count = len([notification for notification in events])
-    return notification_count
-
-
+    event_data = [event for event in events]
+    notification_data = []
+    for i in range(len(event_data)):
+        notification_data.append(
+          event_data[i]['notifications']
+        )
+    return render_template('notifications.html', notification=notification_data, notification_count = session['user']['notification_count'])
+    
 if __name__ == '__main__':
     app.run() 
 

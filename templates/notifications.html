@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="notification-container"> 
+      <h3>Notifications</h3>
+      {% if notification_count > 0 %}
+      {% for data in notification %}
+        <div class="notifications"> 
+           <p>{{ data['notification_date']}}</p>
+           <p>{{ data['message'] }}</p>
+        </div>  
+      {% endfor %}   
+      {% else %}
+      <div class="notifications">   
+        <p>You have {{ notification_count }} notifications</p>    
+    </div>  
+      {% endif %}
+</div>
+
+{% endblock %}
