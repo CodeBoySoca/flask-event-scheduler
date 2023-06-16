@@ -184,13 +184,9 @@ form input::placeholder {
     padding-left: 8px;
 }
 
-
-
 #city {
     width: 94%;
 }
-
-
 
 .container form input[type='date'] {
     width: 94%;
@@ -220,13 +216,11 @@ form input::placeholder {
     margin-bottom: 25px;
 }
 
-
-
-.locale:first-of-type {
+.side-select:nth-of-type(odd) {
     margin-right: 2% !important;
 }
 
-.locale {
+.side-select {
     width: 46% !important;
 }
 

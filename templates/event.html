@@ -8,7 +8,7 @@
         <input type="text" name="address" placeholder="Address" required>
         <input type="text" name="address2" placeholder="Address 2" required>
         <input type="text" name="city" placeholder="City" id="city" required>
-        <select name="country" class="locale">
+        <select name="country" class="side-select">
             <option value="Afghanistan">Afghanistan</option>
             <option value="Åland Islands">Åland Islands</option>
             <option value="Albania">Albania</option>
@@ -254,7 +254,7 @@
             <option value="Zambia">Zambia</option>
             <option value="Zimbabwe">Zimbabwe</option>
         </select>
-        <select name="state" class="locale">
+        <select name="state" class="side-select">
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>
@@ -310,13 +310,30 @@
         <input type="date" name="event_date" placeholder="Event Date" required>
         <input type="time" name="start_time" placeholder="Start Time" required>
         <input type="time" name="end_time" placeholder="End Time" required>
-        <select name="frequency">
-           <option value="1">Weekly</option>
-           <option value="2">Bi-Weekly</option>
-           <option value="3">Monthly</option>
-           <option value="4">Quartely</option>
-           <option value="5">Annually</option>
-        </select>
+        <select name="category" class="side-select">
+            <option value="">Event Category</option>
+            <option value="leisure">Leisure</option>
+            <option value="tech">Tech</option>
+            <option value="outdoors">Outdoor adventure</option>
+            <option value="gaming">Gaming</option>
+            <option value="lifestyle">Lifestyle</option>
+            <option value="art & design">Art & Design</option>
+            <option value="games">Games</option>
+            <option value="science">Science</option>
+            <option value="language">Language</option>
+            <option value="cooking">Cooking</option>
+            <option value="music">Music</option>
+            <option value="dating">Dating</option>
+            <option value="business">Business</option>
+            <option value="sports">Sports</option>
+         </select>
+         <select name="frequency" class="side-select">
+            <option value="1">Weekly</option>
+            <option value="2">Bi-Weekly</option>
+            <option value="3">Monthly</option>
+            <option value="4">Quartely</option>
+            <option value="5">Annually</option>
+         </select>
         <div class="toggle-container">
             <span>Would like this event to be open to the public?</span>
             <label class="toggle">
