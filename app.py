@@ -6,8 +6,6 @@ from dotenv import load_dotenv
 from flask_htmx import HTMX
 import json
 
-
-
 app = Flask(__name__)
 htmx = HTMX(app)
 app.config['SESSION_PERMANENT'] = False

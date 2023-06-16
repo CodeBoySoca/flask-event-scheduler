@@ -16,9 +16,6 @@ body {
     background: #FCFCFC;
 }
 
-
-
-
 .menu {
     width: 30%;
     position: absolute;
@@ -69,7 +66,7 @@ body {
 
 .content {
     width: 60%;
-    margin: 12% auto 0 auto;
+    margin: 7% auto 0 auto;
 }
 
 .content h1 {
@@ -90,10 +87,10 @@ body {
     border: 1px solid rgba(169, 169, 169, 0.6);
     border-radius: 25px;
     width: 60%;
-    height: 530px;
+    height: auto;
     filter: drop-shadow(2px 2px 1px rgba(184, 184, 184, 0.2));
-    margin: 25px auto 0 auto;
-    padding: 5%;
+    margin: 50px auto 0 auto;
+    padding: 5% 5% 2% 5%;
 }
 
 
@@ -103,26 +100,7 @@ body {
     margin-bottom: 25px;
 }
 
-.container form {
-    margin: 0 auto;
-}
 
-form input::placeholder {
-    padding-left: 8px;
-    color: #464545;
-}
-
-.container form input {
-    width: 45%;
-    height: 40px;
-    border-radius: 10px;
-    border: 1px solid rgb(219, 219, 219);
-    margin: 0 10px 35px 0;
-    outline: none;
-    color: #464545;
-    font: 400 0.9em Proxima Nova, sans-serif;
-    padding-left: 8px;
-}
 
 .notification-container {
     width: 80%;
@@ -180,7 +158,38 @@ form input::placeholder {
 }
 
 
-.container form input[type='text'] {}
+
+
+/* Event */
+
+
+.container form {
+    margin: 0 auto;
+}
+
+form input::placeholder {
+    padding-left: 8px;
+    color: #464545;
+}
+
+.container form input {
+    width: 45%;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgb(219, 219, 219);
+    margin: 0 10px 35px 0;
+    outline: none;
+    color: #464545;
+    font: 400 0.9em Proxima Nova, sans-serif;
+    padding-left: 8px;
+}
+
+
+
+#city {
+    width: 94%;
+}
+
 
 
 .container form input[type='date'] {
@@ -199,10 +208,8 @@ form input::placeholder {
     font-weight: 600;
 }
 
-
-
 .container form select {
-    width: 94%;
+    width: 96%;
     height: 50px;
     border-radius: 10px;
     border: 1px solid rgb(219, 219, 219);
@@ -210,18 +217,30 @@ form input::placeholder {
     font: 400 0.9em Proxima Nova, sans-serif;
     outline: none;
     padding-left: 8px;
+    margin-bottom: 25px;
 }
+
+
+
+.locale:first-of-type {
+    margin-right: 2% !important;
+}
+
+.locale {
+    width: 46% !important;
+}
+
 
 .toggle-container {
     width: 100%;
-    margin: 50px 0 5px 0;
+    margin: 15px 0 5px 0;
 }
 
 .toggle-container span:first-child {
     color: #464545;
     font: 600 0.9em Proxima Nova, sans-serif;
     display: block;
-    margin-bottom: 10px;
+
 }
 
 
@@ -295,6 +314,15 @@ input:checked+.toggle-switch:before {
 .toggle-switch.round:before {
     border-radius: 50%;
 }
+
+
+
+/**********/
+
+
+
+
+
 
 /* Register */
 
