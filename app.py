@@ -78,6 +78,12 @@ def notifications():
         )
     return render_template('notifications.html', notification=notification_data, notification_count = session['user']['notification_count'])
     
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html', page_title='404 - Page not found', notification_count = 0)
+
+
 if __name__ == '__main__':
     app.run() 
 
